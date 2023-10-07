@@ -21,7 +21,6 @@ const run = async () => {
     const db = client.db('pcbuilder');
     const componentCollection = db.collection('pccomponents');
     const pcBuildCollection = db.collection('pcbuild');
-    const finishCollection = db.collection('finish');
 
     app.get('/allComponents', async (req, res) => {
       const components = await componentCollection.find({}).toArray();
@@ -32,7 +31,7 @@ const run = async () => {
     app.get('/allComponents/:id', async (req, res) => {
       const id = req.params.id;
 
-      const components = await componentCollection.findOne({_id: new ObjectId(productid)})
+      const components = await componentCollection.findOne({_id: new ObjectId(id)})
       
         res.send({ message: "success", status: 200, data: components });
     });
